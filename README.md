@@ -36,5 +36,5 @@ Repositório para registrar o progresso e as atividades realizadas durante a men
     
 </div>
 
-![snake gif](https://github.com/EngelsEvelin/EngelsEvelin/blob/output/github-contribution-grid-snake.gif)
+![snake gif](https://github.com/EngelsEvelin/Mentoria/blob/output/github-contribution-grid-snake.gif)
 
