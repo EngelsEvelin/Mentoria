@@ -1,40 +1,115 @@
-# Mentoria
-Repositório para registrar o progresso e as atividades realizadas durante a mentoria
+# Tutorial: Projeto de Login com Spring Boot
 
-# 👋 Olá! Eu sou Evelin Engels. 
+## Introdução
+Este projeto implementa um sistema de autenticação usando Spring Boot, Spring Security, JWT e JPA. Ele fornece endpoints para login, registro e proteção de rotas, permitindo a autenticação e autorização de usuários.
 
-🌱 Atualmente, trabalho como QA e estou aprendendo Java.
+## Tecnologias Utilizadas
+- Java 17
+- Spring Boot 3
+- Spring Security
+- JWT (JSON Web Token)
+- JPA (Java Persistence API) com Hibernate
+- H2 para testes
+- Lombok
+- Maven
 
-🔍 Qualidade de Software e Automatização de Testes, com experiência sólida na área e certificação CTFL (Certified Tester Foundation Level).
+## Como Rodar o Projeto Localmente
 
-🚀 Especializada em criar estratégias eficientes de teste e implementar soluções de automação utilizando Cypress e Playwright, garantindo a qualidade e a performance dos produtos.
+### Pré-requisitos
+- Java 17 instalado
+- Maven instalado
+- Banco em memória H2
 
-💡 Busco constantemente aprimorar meus conhecimentos em QA, explorando novas ferramentas e metodologias para otimizar os processos de teste e manter meu crescimento contínuo como desenvolvedora Java.
+### Passos para execução
+1. **Clone o repositório**
+   ```sh
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd seu-repositorio
+   ```
 
-## Skills em Testes (Front-end e Back-end)
+2. **Configure o banco de dados**
+   No arquivo `application.properties` ou `application.yml`, configure as credenciais do banco de dados:
+   ```properties
+   spring.datasource.url=jdbc:postgresql://localhost:5432/seu_banco
+   spring.datasource.username=seu_usuario
+   spring.datasource.password=sua_senha
+   ```
 
-- **Testes Funcionais & Não Funcionais**: Caixa branca, caixa preta, regressivos, estáticos, funcionais e manuais.
-- **Automação de Testes**: Experiência com ferramentas de automação.
-- **Testes de Performance**: Testes de desempenho e carga (Performance Testing).
-- **Data Quality**: Validação e controle de qualidade de dados.
-- **Behavior-Driven Development (BDD)**: Aplicação de práticas de BDD.
-- **Revisão de Código & Testes Estáticos**: Code review e validação do MainTF.
-- **Ferramentas de Gerenciamento de Testes**: JIRA, Silk, etc.
-- **Testes de Aplicações**: Experiência em testes de aplicações web, móveis e APIs.
-- **Cloud**: AWS (Athena, EMR, Glue, S3, etc.).
-- **Mobile Testing**: Experiência com Mobile Center.
+3. **Execute o projeto**
+   ```sh
+   mvn spring-boot:run
+   ```
 
-<div style="display: inline_block"><br>
-  <img align="center" alt="Rafa-Js" height="30" width="40" 
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cypressio/cypressio-plain.svg" />
-  <img align="center" alt="Rafa-Ts" height="30" width="40" 
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />
-  <img align="center" alt="Rafa-Ts" height="30" width="40" 
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" />
-  <img align="center" alt="Rafa-Ts" height="30" width="40" 
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-    
-</div>
+## Endpoints da API
 
-![snake gif](https://github.com/EngelsEvelin/Mentoria/blob/output/github-contribution-grid-snake.gif)
+### 1. Registro de Usuário
+**Endpoint:** `POST /auth/register`
+- **Request Body:**
+  ```json
+  {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "123456"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "name": "Success",
+    "token": "jwt_token"
+  }
+  ```
 
+### 2. Login de Usuário
+**Endpoint:** `POST /auth/login`
+- **Request Body:**
+  ```json
+  {
+    "email": "johndoe@example.com",
+    "password": "123456"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "name": "Success",
+    "token": "jwt_token"
+  }
+  ```
+
+### 3. Obter Dados do Usuário Logado
+**Endpoint:** `GET /user`
+- **Headers:**
+  ```
+  Authorization: Bearer jwt_token
+  ```
+- **Response:**
+  ```json
+  {
+    "message": "sucesso!"
+  }
+  ```
+
+## Estrutura do Projeto
+```
+login_app
+│── src
+│   ├── main
+│   │   ├── java/com/example/login_app
+│   │   │   ├── controllers
+│   │   │   ├── domain/user
+│   │   │   ├── dto
+│   │   │   ├── infra/cors
+│   │   │   ├── infra/security
+│   │   │   ├── repositories
+│   │   │   ├── services
+│   │   ├── resources
+│   │   │   ├── application.properties
+│── pom.xml
+│── README.md
+```
+
+## Melhorias Futuras
+- Implementar refresh token
+- Adicionar roles e permissões para usuários
+- Criar testes unitários e de integração
